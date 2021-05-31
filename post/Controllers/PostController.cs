@@ -6,8 +6,11 @@ using Microsoft.Extensions.Logging;
 using PostService.Entities;
 using PostService.Data;
 using Microsoft.EntityFrameworkCore; //ToListAsync
+using Microsoft.Data.Sqlite;
+using Newtonsoft.Json;
+using RabbitMQ.Client;
 
-namespace PostServiceService.Controllers
+namespace PostService.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

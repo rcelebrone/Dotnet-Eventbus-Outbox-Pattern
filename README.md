@@ -5,7 +5,9 @@
 - post
 
 ## Artigo de referência 
-https://itnext.io/how-to-build-an-event-driven-asp-net-core-microservice-architecture-e0ef2976f33f
+> https://itnext.io/how-to-build-an-event-driven-asp-net-core-microservice-architecture-e0ef2976f33f
+> 
+> https://itnext.io/the-outbox-pattern-in-event-driven-asp-net-core-microservice-architectures-10b8d9923885
 
 ## Documentação da API
 api/docs: http://localhost:5000/api/docs/index.html
@@ -81,3 +83,5 @@ api/docs: http://localhost:5000/api/docs/index.html
 ```docker
 docker run -d  -p 15672:15672 -p 5672:5672 --hostname my-rabbit --name some-rabbit rabbitmq:3-management
 ```
+
+## Teste

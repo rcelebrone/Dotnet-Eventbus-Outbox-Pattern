@@ -1,4 +1,4 @@
-namespace PostServiceService.Entities
+namespace PostService.Entities
 {
     public class User
     {

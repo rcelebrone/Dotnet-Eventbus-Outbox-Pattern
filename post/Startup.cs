@@ -39,7 +39,7 @@ namespace PostService
                 });
             });
 
-            services.AddDbContext<UserContext>(options => options.UseSqlite("Data Source=post.db"));
+            services.AddDbContext<PostContext>(options => options.UseSqlite("Data Source=post.db"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
