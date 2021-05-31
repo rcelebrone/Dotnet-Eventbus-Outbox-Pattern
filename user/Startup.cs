@@ -58,7 +58,7 @@ namespace UserService
             });
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/api/docs/v1/swagger.json", "AnnexUI API V1");
+                c.SwaggerEndpoint("/api/docs/v1/swagger.json", "USER API V1");
                 c.RoutePrefix = "api/docs";
             });
 

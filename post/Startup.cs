@@ -9,8 +9,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PostService.Data;
+using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore;
+using Swashbuckle.AspNetCore; // AddSwaggerGen
+using Microsoft.OpenApi.Models;// OpenApiInfo
+using Microsoft.Data.Sqlite;
 
-namespace post
+namespace PostService
 {
     public class Startup
     {
@@ -26,15 +32,35 @@ namespace post
         {
 
             services.AddControllers();
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new OpenApiInfo { 
+                    Title = "PostService",
+                    Version = "v1"
+                });
+            });
+
+            services.AddDbContext<UserContext>(options => options.UseSqlite("Data Source=post.db"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, PostContext dbContext)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                dbContext.Database.EnsureCreated();
             }
+
+            //https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/559#issuecomment-360155658
+            app.UseSwagger(c =>
+            {
+                c.RouteTemplate = "api/docs/{documentName}/swagger.json";
+            });
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/api/docs/v1/swagger.json", "POST API V1");
+                c.RoutePrefix = "api/docs";
+            });
 
             app.UseRouting();
 
